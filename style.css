@@ -1,105 +1,97 @@
-/* Body Styles */
 body {
-    font-family: 'Courier New', monospace; /* All text in mono */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
 }
 
-/* Form Container */
 .container {
-    text-align: center;
-    width: 100%;
-    max-width: 200px; /* Reduced width by 50% */
-    padding: 20px;
-}
-
-/* Input and Label Styles - Uniform for all fields */
-input[type="number"] {
-    font-family: 'Courier New', monospace;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    text-align: left;
-    margin-bottom: 10px; /* Added margin for spacing */
-    box-sizing: border-box;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
 }
 
 label {
-    display: block;
-    font-size: 18px;
-    margin: 15px 0 5px;
-    font-family: 'Courier New', monospace;
+  display: block;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
 }
 
-.field-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
+input[type="number"] {
+  width: 50%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
-/* Remove default placeholder text */
-input[type="number"]::placeholder {
-    color: transparent;
+.info-text {
+  font-size: 12px;
+  color: gray;
+  margin-top: -8px;
 }
 
-/* Placeholder for right-aligned measurement indicator text */
-.measurement {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    color: black;
+.button-container {
+  margin-top: 20px;
 }
 
-input[type="number"]:focus {
-    border-color: #007BFF;
+button {
+  padding: 15px;
+  font-size: 18px;
+  background-color: #ff3333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50%;
+  transition: background-color 0.3s ease;
+  font-family: "Courier New", Courier, monospace;
 }
 
-/* Proportionate Button - Solid Cherry Red */
-#proportionate-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: #e12f2f; /* Cherry Red */
-    color: white;
-    font-family: 'Courier New', monospace;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-/* Reset Button */
-#reset-button {
-    display: none;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #e12f2f; /* Cherry Red */
-    color: white;
-    font-family: 'Courier New', monospace;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.output-container {
+  display: none;
+  margin-top: 20px;
 }
 
-/* Outputs Container */
-#output-container {
-    display: none;
-    margin-top: 20px;
-    font-family: 'Courier New', monospace;
+.output-text {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-#scaleFactorOutput, #skateboardWidthOutput {
-    font-size: 18px;
-    margin-bottom: 10px;
+.reset-button {
+  display: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff3333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.reset-button:active {
+  background-color: #d22f2f;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+  }
+
+  input[type="number"],
+  button {
+    width: 90%;
+  }
 }
