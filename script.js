@@ -10,14 +10,14 @@ let fingerboardWidth = document.getElementById('fingerboard-width');
 
 // Function to start the calculation
 function startCalculation() {
-    // Display the output container
+    // Display the output container immediately after the button is pressed
     outputContainer.style.display = 'block';
 
     // Calculate the scale factor and skateboard width
     let scaleFactor = calculateScaleFactor();
     let skateboardWidth = calculateSkateboardWidth();
 
-    // Update the outputs
+    // Update the outputs immediately
     scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor} x`;
     skateboardWidthOutput.innerText = `Skateboard Width: ${skateboardWidth.toFixed(2)} in`;
 
