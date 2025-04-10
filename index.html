@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Proportion Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <form id="proportionForm">
-      <label for="skateLength">Skateboard Length (in)</label>
-      <div class="spacer"></div>
-      <p class="small-note">Average popsicle length = 32 in</p>
-      <input type="number" id="skateLength" step="0.01" value="32" />
+      <label for="skateLength">Skateboard Length <span class="unit">(in)</span></label>
+      <div class="skate-hint-space"></div>
+      <p class="hint-text">Average popsicle length = 32 in</p>
+      <input type="number" id="skateLength" value="32" step="0.01" />
 
-      <label for="fbLength">Fingerboard Length (mm)</label>
+      <label for="fbLength">Fingerboard Length <span class="unit">(mm)</span></label>
       <input type="number" id="fbLength" step="0.01" />
 
-      <label for="fbWidth">Fingerboard Width (mm)</label>
+      <label for="fbWidth">Fingerboard Width <span class="unit">(mm)</span></label>
       <input type="number" id="fbWidth" step="0.01" />
 
-      <button type="submit" id="proportionBtn">PROPORTIONATE</button>
+      <button id="proportionBtn" type="submit">PROPORTIONATE</button>
     </form>
 
-    <div id="output" class="hidden">
-      <p><strong>Scale Factor:</strong> <span id="scaleFactor"></span></p>
-      <p><strong>Skateboard Width (in):</strong> <span id="skateWidth"></span></p>
+    <div class="output" id="outputSection">
+      <p id="scaleFactor"></p>
+      <p id="skateWidth"></p>
     </div>
 
-    <button id="resetBtn" class="hidden">RESET</button>
+    <button id="resetBtn" style="display: none;">Reset</button>
   </div>
 
   <script src="script.js"></script>
