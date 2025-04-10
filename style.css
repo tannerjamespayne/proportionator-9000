@@ -1,0 +1,100 @@
+body {
+  font-family: monospace;
+  background-color: #f4f4f4;
+  padding: 40px;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 30px;
+  padding: 14px;
+  font-size: 16px;
+  color: white;
+  background-color: #d2042d; /* Cherry red */
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.loading-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #ffcc00; /* Sunburst yellow */
+  z-index: 1;
+  transition: width 3s linear;
+}
+
+.receipt {
+  margin-top: 20px;
+  background-color: #eee;
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  animation: slideUp 3s ease forwards;
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+#resetBtn {
+  background-color: #d2042d;
+  margin-top: 20px;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 4s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.hidden {
+  display: none;
+}
