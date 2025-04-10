@@ -1,97 +1,67 @@
 body {
-  font-family: "Courier New", Courier, monospace;
-  text-align: center;
-  background-color: #f0f0f0;
+  font-family: monospace;
+  background: #fff;
   margin: 0;
-  padding: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  max-width: 800px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.field-group {
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.subtext {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: -10px;
+  margin-bottom: 5px;
 }
 
 input[type="number"] {
-  width: 50%;
+  width: 100%;
   padding: 10px;
-  margin-top: 5px;
-  font-size: 18px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  font-size: 1em;
+  font-family: monospace;
   box-sizing: border-box;
-  text-align: left;
-}
-
-.info-text {
-  font-size: 12px;
-  color: gray;
-  margin-top: -8px;
-}
-
-.button-container {
-  margin-top: 20px;
 }
 
 button {
-  padding: 15px;
-  font-size: 18px;
-  background-color: #ff3333;
-  color: white;
+  font-family: monospace;
+  font-size: 1em;
+  padding: 12px 20px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  width: 50%;
-  transition: background-color 0.3s ease;
-  font-family: "Courier New", Courier, monospace;
+  margin-top: 10px;
+  transition: all 0.3s ease;
 }
 
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+#proportionateBtn {
+  background-color: #c21807; /* cherry red */
+  color: white;
+  width: 100%;
 }
 
-.output-container {
+#resetBtn {
+  display: none;
+  background-color: #c21807;
+  color: white;
+  width: 100%;
+}
+
+.output {
   display: none;
   margin-top: 20px;
-}
-
-.output-text {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.reset-button {
-  display: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #ff3333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.reset-button:active {
-  background-color: #d22f2f;
-}
-
-@media (max-width: 600px) {
-  .container {
-    width: 95%;
-  }
-
-  input[type="number"],
-  button {
-    width: 90%;
-  }
 }
