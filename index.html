@@ -3,31 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Proportionator Web App</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Proportionator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <label for="skateboardLength">Skateboard Length (in)</label>
-    <p class="info-text">Average popsicle length = 32 in</p>
-    <input type="number" id="skateboardLength" value="32" min="1" step="0.01" />
-
-    <label for="fingerboardLength">Fingerboard Length (mm)</label>
-    <input type="number" id="fingerboardLength" min="1" step="0.01" />
-
-    <label for="fingerboardWidth">Fingerboard Width (mm)</label>
-    <input type="number" id="fingerboardWidth" min="1" step="0.01" />
-
-    <div class="button-container">
-      <button id="proportionateButton" onclick="calculate()">PROPORTIONATE</button>
+    <div class="field-group">
+      <label for="skateLength">Skateboard Length (in)</label>
+      <p class="subtext">Average popsicle length = 32 in</p>
+      <input type="number" step="0.01" id="skateLength" value="32" />
     </div>
 
-    <div class="output-container" id="outputContainer">
-      <div class="output-text" id="scaleFactorOutput"></div>
-      <div class="output-text" id="skateboardWidthOutput"></div>
+    <div class="field-group">
+      <label for="fbLength">Fingerboard Length (mm)</label>
+      <input type="number" step="0.01" id="fbLength" />
     </div>
 
-    <button id="resetButton" class="reset-button" onclick="resetApp()">Reset</button>
+    <div class="field-group">
+      <label for="fbWidth">Fingerboard Width (mm)</label>
+      <input type="number" step="0.01" id="fbWidth" />
+    </div>
+
+    <button id="proportionateBtn">PROPORTIONATE</button>
+
+    <div class="output" id="outputSection">
+      <p>Scale Factor: <span id="scaleFactor"></span>x</p>
+      <p>Skateboard Width (in): <span id="skateWidth"></span></p>
+    </div>
+
+    <button id="resetBtn">RESET</button>
   </div>
 
   <script src="script.js"></script>
