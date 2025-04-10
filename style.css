@@ -1,64 +1,104 @@
+/* Body Styles */
 body {
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', monospace; /* All text in mono */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
 }
 
-.input-container {
-    margin: 20px;
+/* Form Container */
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Input and Label Styles - Uniform for all fields */
+input[type="number"] {
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 10px; /* Added margin for spacing */
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-}
-
-input {
-    margin-bottom: 15px;
-    padding: 5px;
-    width: 200px;
+    font-size: 18px;
+    margin: 15px 0 5px;
     font-family: 'Courier New', monospace;
 }
 
-.proportionate-button {
+.field-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+input[type="number"]::placeholder {
+    color: transparent; /* Hide default placeholder */
+}
+
+input[type="number"]:focus {
+    border-color: #007BFF;
+}
+
+/* Proportionate Button */
+#proportionate-btn {
+    width: 100%;
+    padding: 15px;
     background-color: #e12f2f; /* Cherry Red */
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
-    width: 250px;
     text-align: center;
+    z-index: 2;
 }
 
+/* Loading Bar inside the Proportionate Button */
 #loading-bar {
-    background-color: #ffbf00; /* Sunburst Yellow */
-    height: 5px;
-    width: 0%;
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    transition: width 2s ease-in-out;
+    height: 100%;
+    background-color: #ffbf00; /* Sunburst Yellow */
+    width: 0;
+    z-index: 1;
 }
 
+/* Reset Button */
+#reset-button {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e12f2f; /* Cherry Red */
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Outputs Container */
 #output-container {
     display: none;
     margin-top: 20px;
+    font-family: 'Courier New', monospace;
 }
 
-button {
-    display: none;
-    padding: 10px 20px;
-    background-color: #e12f2f; /* Cherry Red */
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:visible {
-    display: block;
-}
-
-#reset-button {
-    display: none;
+#scaleFactorOutput, #skateboardWidthOutput {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
