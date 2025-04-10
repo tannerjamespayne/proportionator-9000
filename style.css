@@ -1,55 +1,76 @@
 body {
     font-family: 'Courier New', monospace;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
     text-align: center;
-    width: 300px;
+    margin-top: 50px;
 }
 
-#inputs input {
-    margin: 10px 0;
-    padding: 5px;
+input[type="number"] {
     width: 200px;
+    padding: 10px;
     font-size: 16px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    margin: 10px;
+    text-align: left;
+}
+
+input[type="number"]:focus {
+    outline: none;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    display: block;
+    text-align: left;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 20px;
+    color: white;
+    background-color: #e74c3c;
+    border: none;
     cursor: pointer;
+    position: relative;
+    transition: background-color 0.5s;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
 #loadingBarContainer {
+    position: absolute;
     width: 100%;
-    background-color: #ccc;
-    height: 30px;
-    margin-top: 20px;
+    height: 100%;
+    background-color: #f1c40f;
+    top: 0;
+    left: 0;
 }
 
 #loadingBar {
+    width: 0;
     height: 100%;
-    width: 0%;
-    background-color: #f1c40f;
-    transition: width 3s ease-in-out;
+    background-color: yellow;
+    transition: width 2s;
 }
 
 #output {
     margin-top: 20px;
+    font-size: 20px;
+    font-family: 'Courier New', monospace;
 }
 
 #resetButton {
-    background-color: #e74c3c;
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 20px;
     color: white;
+    background-color: #e74c3c;
+    border: none;
+    cursor: pointer;
     display: none;
 }
