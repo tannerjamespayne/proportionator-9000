@@ -73,27 +73,3 @@ function resetPage() {
 proportionateButton.addEventListener("click", function() {
     document.getElementById('inputs').style.display = "block";
 });
-
-
-function resetPage() {
-    // Reset input fields
-    fbLengthInput.value = "";
-    fbWidthInput.value = "";
-    
-    // Reset the outputs
-    output.style.display = "none";
-    resetButton.style.display = "none";
-    proportionateButton.disabled = false;
-
-    // Enable input fields
-    fbLengthInput.disabled = false;
-    fbWidthInput.disabled = false;
-
-    // Hide inputs again until the button is clicked
-    document.getElementById('inputs').style.display = "none";
-}
-
-// Show inputs when Proportionate button is clicked
-proportionateButton.addEventListener("click", function() {
-    document.getElementById('inputs').style.display = "block";
-});
