@@ -14,7 +14,7 @@ body {
 .container {
     text-align: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 400px; /* Reduced width */
     padding: 20px;
 }
 
@@ -28,6 +28,7 @@ input[type="number"] {
     border-radius: 5px;
     text-align: left;
     margin-bottom: 10px; /* Added margin for spacing */
+    box-sizing: border-box;
 }
 
 label {
@@ -43,8 +44,20 @@ label {
     width: 100%;
 }
 
+/* Remove default placeholder text */
 input[type="number"]::placeholder {
-    color: transparent; /* Hide default placeholder */
+    color: transparent;
+}
+
+/* Placeholder for right-aligned measurement indicator text */
+.measurement {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: black;
 }
 
 input[type="number"]:focus {
@@ -63,7 +76,6 @@ input[type="number"]:focus {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    z-index: 2;
 }
 
 /* Reset Button */
