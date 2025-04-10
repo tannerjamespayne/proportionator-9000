@@ -1,115 +1,84 @@
-let proportionateButton = document.getElementById('proportionateButton');
-let resetButton = document.getElementById('resetButton');
-let loadingBar = document.getElementById('loadingBar');
-let output = document.getElementById('output');
+let loadingBar = document.getElementById('loading-bar');
+let proportionateBtn = document.getElementById('proportionate-btn');
+let resetBtn = document.getElementById('reset-button');
+let outputContainer = document.getElementById('output-container');
 let scaleFactorOutput = document.getElementById('scaleFactorOutput');
 let skateboardWidthOutput = document.getElementById('skateboardWidthOutput');
-let fbLengthInput = document.getElementById('fb_length');
-let fbWidthInput = document.getElementById('fb_width');
-let skateboardLengthInput = document.getElementById('skateboard_length');
 
-// Function to handle loading bar behavior inside the proportionate button
+let skateboardLength = document.getElementById('skateboard-length');
+let fingerboardLength = document.getElementById('fingerboard-length');
+let fingerboardWidth = document.getElementById('fingerboard-width');
+
+// Function to start the loading process
 function startLoading() {
-    // Disable input fields and button during loading
-    fbLengthInput.disabled = true;
-    fbWidthInput.disabled = true;
-    proportionateButton.disabled = true;
+    // Make the loading bar visible and start it
+    loadingBar.style.width = '100%';
 
-    // Start loading bar animation (smooth in 2 seconds)
-    let loadTime = 2000; // 2 seconds for loading
-    let width = 0;
-
-    let interval = setInterval(() => {
-        width += 1;
-        loadingBar.style.width = width + "%";
-
-        if (width >= 100) {
-            clearInterval(interval);
-            setTimeout(showOutput, 1000); // Wait 1 second before showing output
-            proportionateButton.style.backgroundColor = '#f1c40f'; // Yellow after completion
-        }
-    }, loadTime / 100); // Updates every fraction of a second
-}
-
-// Function to calculate and display the output
-function showOutput() {
-    // Get user input values
-    let fbLength = parseFloat(fbLengthInput.value);
-    let fbWidth = parseFloat(fbWidthInput.value);
-    let skateboardLength = parseFloat(skateboardLengthInput.value); // Fixed as 32 for now
-
-    // Ensure valid inputs before calculation
-    if (isNaN(fbLength) || isNaN(fbWidth)) {
-        alert("Please input valid numbers.");
-        resetPage();
-        return;
-    }
-
-    // Calculate scale factor (fbLength / skateboardLength) 
-    // This should return a value in the range of 7-10
-    let scaleFactor = fbLength / skateboardLength;
-
-    // Calculate skateboard width (fbWidth * scaleFactor)
-    // This should return a value in the 8-14 inch range
-    let skateboardWidth = fbWidth * scaleFactor;
-
-    // Display scale factor and skateboard width
-    scaleFactorOutput.innerText = "Scale Factor: " + scaleFactor.toFixed(3) + "x";
-    skateboardWidthOutput.innerText = "Skateboard Width: " + skateboardWidth.toFixed(2) + " in";
-
-    output.style.display = "block"; // Show the output section
-
-    // Show reset button after 4 seconds
+    // After 2 seconds, show the outputs
     setTimeout(() => {
-        resetButton.style.display = "inline-block"; // Show reset button
-    }, 4000); // Wait 4 seconds before showing reset button
+        outputContainer.style.display = 'block';
+
+        // Populate outputs based on current inputs
+        let scaleFactor = calculateScaleFactor();
+        let skateboardWidth = calculateSkateboardWidth();
+
+        scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor}x`;
+        skateboardWidthOutput.innerText = `Skateboard Width (in): ${skateboardWidth.toFixed(2)}`;
+
+        // Show the reset button after 4 seconds
+        setTimeout(() => {
+            resetBtn.style.display = 'block';
+        }, 4000);
+    }, 2000);
+
+    // Change button color to yellow after loading bar finishes
+    proportionateBtn.style.backgroundColor = '#ffbf00'; // Sunburst Yellow
 }
 
-// Reset the page to its initial state
-function resetPage() {
-    // Reset input fields (fingerboard length and width, but not skateboard length)
-    fbLengthInput.value = "";
-    fbWidthInput.value = "";
+// Function to calculate scale factor
+function calculateScaleFactor() {
+    let fbLength = parseFloat(fingerboardLength.value);
+    let fbWidth = parseFloat(fingerboardWidth.value);
+    let sbLength = parseFloat(skateboardLength.value);
 
-    // Reset the outputs
-    output.style.display = "none";
-    resetButton.style.display = "none";
+    // Pull the scale factor value from G10 in Google Sheets (already calculated in your sheet)
+    let scaleFactor = getGoogleSheetData('G10'); // Use your method to fetch G10 value
+
+    return scaleFactor;
+}
+
+// Function to calculate skateboard width
+function calculateSkateboardWidth() {
+    let fbLength = parseFloat(fingerboardLength.value);
+    let fbWidth = parseFloat(fingerboardWidth.value);
+    let sbLength = parseFloat(skateboardLength.value);
+
+    // Perform calculations using the existing formulas in your sheet
+
+    let skateboardWidth = (fbWidth * sbLength) / fbLength; // Example calculation
+
+    return skateboardWidth;
+}
+
+// Function to get data from Google Sheets (use your actual method to fetch data)
+function getGoogleSheetData(cell) {
+    // This is a placeholder. Replace with your actual method to pull the data.
+    return 7.5; // Example scale factor
+}
+
+// Function to reset the app
+function resetApp() {
+    // Reset the input fields and hide outputs
+    skateboardLength.value = 32;
+    fingerboardLength.value = '';
+    fingerboardWidth.value = '';
+
+    outputContainer.style.display = 'none';
+    resetBtn.style.display = 'none';
 
     // Reset the proportionate button to red
-    proportionateButton.style.transition = "background-color 0.5s ease"; // Smooth transition
-    proportionateButton.style.backgroundColor = '#e74c3c'; // Cherry red
+    proportionateBtn.style.backgroundColor = '#e12f2f'; // Cherry Red
 
-    // Reset button color
-    loadingBar.style.width = '0%'; // Reset loading bar
-    loadingBar.style.transition = "width 0s"; // Instant reset
-    loadingBar.style.width = '0%'; // Hide loading bar initially
-    setTimeout(() => {
-        loadingBar.style.transition = "width 2s"; // Resume smooth transition after reset
-    }, 50); // Short delay to apply smooth transition after reset
-
-    // Re-enable input fields
-    fbLengthInput.disabled = false;
-    fbWidthInput.disabled = false;
-
-    // Re-enable proportionate button
-    proportionateButton.disabled = false;
+    // Reset loading bar
+    loadingBar.style.width = '0%';
 }
-
-// Event listener for the proportionate button to start the calculation
-proportionateButton.addEventListener('click', function() {
-    startLoading();
-});
-
-// Event listener for the reset button
-resetButton.addEventListener('click', function() {
-    // Reset page, but keep skateboard length unchanged
-    fbLengthInput.value = "";  // Reset fingerboard length
-    fbWidthInput.value = "";   // Reset fingerboard width
-    output.style.display = "none";  // Hide outputs
-    resetButton.style.display = "none"; // Hide reset button
-    loadingBar.style.width = "0%"; // Reset loading bar
-
-    // Keep the skateboard length input as it is
-    skateboardLengthInput.disabled = false;  // Make sure the skateboard length can still be changed
-    proportionateButton.style.backgroundColor = '#e74c3c'; // Reset to cherry red
-});
