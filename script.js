@@ -12,6 +12,8 @@ let fingerboardWidth = document.getElementById('fingerboard-width');
 // Function to start the loading process
 function startLoading() {
     // Make the loading bar visible and start it
+    loadingBar.style.width = '0%';
+    loadingBar.style.transition = 'width 2s ease-in-out'; // Smooth transition for 2 seconds
     loadingBar.style.width = '100%';
 
     // After 2 seconds, show the outputs
@@ -26,7 +28,7 @@ function startLoading() {
 
         // Update outputs with fetched data
         scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor}x`;
-        skateboardWidthOutput.innerText = `Skateboard Width (in): ${skateboardWidth.toFixed(2)}`;
+        skateboardWidthOutput.innerText = `Skateboard Width: ${skateboardWidth.toFixed(2)} in`;
 
         // Show the reset button after 4 seconds
         setTimeout(() => {
@@ -48,6 +50,30 @@ function calculateSkateboardWidth() {
     let skateboardWidth = (fbWidth * sbLength) / fbLength; // Example formula
 
     return skateboardWidth;
+}
+
+// Function to get data from Google Sheets (fetch G10 value for scale factor)
+function getGoogleSheetData(cell) {
+    // Use your actual method to fetch the value from Google Sheets.
+    // Here's a placeholder example where we return a constant value (this would be replaced with actual API fetch).
+    return 7.5; // Example scale factor (value pulled from G10 in your Google Sheets)
+}
+
+// Function to reset the app
+function resetApp() {
+    // Reset the input fields and hide outputs
+    skateboardLength.value = 32;
+    fingerboardLength.value = '';
+    fingerboardWidth.value = '';
+
+    outputContainer.style.display = 'none';
+    resetBtn.style.display = 'none';
+
+    // Reset the proportionate button to red
+    proportionateBtn.style.backgroundColor = '#e12f2f'; // Cherry Red
+
+    // Reset loading bar
+    loadingBar.style.width = '0%';
 }
 
 // Function to get data from Google Sheets (fetch G10 value for scale factor)
