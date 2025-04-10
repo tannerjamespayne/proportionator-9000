@@ -1,62 +1,23 @@
-let proportionateBtn = document.getElementById('proportionate-btn');
-let resetBtn = document.getElementById('reset-button');
-let outputContainer = document.getElementById('output-container');
-let scaleFactorOutput = document.getElementById('scaleFactorOutput');
-let skateboardWidthOutput = document.getElementById('skateboardWidthOutput');
+function calculate() {
+  let skateboardLength = parseFloat(document.getElementById('skateboardLength').value);
+  let fingerboardLength = parseFloat(document.getElementById('fingerboardLength').value);
+  let fingerboardWidth = parseFloat(document.getElementById('fingerboardWidth').value);
 
-let skateboardLength = document.getElementById('skateboard-length');
-let fingerboardLength = document.getElementById('fingerboard-length');
-let fingerboardWidth = document.getElementById('fingerboard-width');
+  let scaleFactor = ((skateboardLength * 25.4) / fingerboardLength).toFixed(3);
+  let skateboardWidth = (fingerboardWidth * (skateboardLength / fingerboardLength)).toFixed(2);
 
-// Function to start the calculation
-function startCalculation() {
-    // Display the output container immediately after the button is pressed
-    outputContainer.style.display = 'block';
+  document.getElementById('scaleFactorOutput').textContent = `Scale Factor: ${scaleFactor} x`;
+  document.getElementById('skateboardWidthOutput').textContent = `Skateboard Width: ${skateboardWidth} in`;
 
-    // Calculate the scale factor and skateboard width
-    let scaleFactor = calculateScaleFactor();
-    let skateboardWidth = calculateSkateboardWidth();
-
-    // Update the outputs immediately
-    scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor} x`;
-    skateboardWidthOutput.innerText = `Skateboard Width: ${skateboardWidth.toFixed(2)} in`;
-
-    // Show the reset button after 4 seconds
-    setTimeout(() => {
-        resetBtn.style.display = 'block';
-    }, 4000);
+  document.getElementById('outputContainer').style.display = 'block';
+  document.getElementById('resetButton').style.display = 'inline-block';
 }
 
-// Function to calculate skateboard width
-function calculateSkateboardWidth() {
-    let fbLength = parseFloat(fingerboardLength.value);
-    let fbWidth = parseFloat(fingerboardWidth.value);
-    let sbLength = parseFloat(skateboardLength.value);
-
-    // Perform calculations based on input values (e.g., adjust for the proportion)
-    let skateboardWidth = (fbWidth * sbLength) / fbLength; // Example formula
-
-    return skateboardWidth;
-}
-
-// Function to calculate scale factor
-function calculateScaleFactor() {
-    let sbLength = parseFloat(skateboardLength.value);
-    let fbLength = parseFloat(fingerboardLength.value);
-
-    // Calculate scale factor using the formula: (skateboard length * 25.4) / fingerboard length
-    let scaleFactor = (sbLength * 25.4) / fbLength;
-
-    return scaleFactor.toFixed(3); // Keeping scale factor to 3 decimal places
-}
-
-// Function to reset the app
 function resetApp() {
-    // Reset the input fields and hide outputs
-    skateboardLength.value = 32;
-    fingerboardLength.value = '';
-    fingerboardWidth.value = '';
-
-    outputContainer.style.display = 'none';
-    resetBtn.style.display = 'none';
+  document.getElementById('fingerboardLength').value = '';
+  document.getElementById('fingerboardWidth').value = '';
+  document.getElementById('scaleFactorOutput').textContent = '';
+  document.getElementById('skateboardWidthOutput').textContent = '';
+  document.getElementById('outputContainer').style.display = 'none';
+  document.getElementById('resetButton').style.display = 'none';
 }
