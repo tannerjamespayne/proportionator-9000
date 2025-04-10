@@ -18,10 +18,13 @@ function startLoading() {
     setTimeout(() => {
         outputContainer.style.display = 'block';
 
-        // Populate outputs based on current inputs
-        let scaleFactor = calculateScaleFactor();
+        // Fetch scale factor from Google Sheets
+        let scaleFactor = getGoogleSheetData('G10'); // Fetch the value from G10
+
+        // Fetch skateboard width based on inputs
         let skateboardWidth = calculateSkateboardWidth();
 
+        // Update outputs with fetched data
         scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor}x`;
         skateboardWidthOutput.innerText = `Skateboard Width (in): ${skateboardWidth.toFixed(2)}`;
 
@@ -35,35 +38,23 @@ function startLoading() {
     proportionateBtn.style.backgroundColor = '#ffbf00'; // Sunburst Yellow
 }
 
-// Function to calculate scale factor
-function calculateScaleFactor() {
-    let fbLength = parseFloat(fingerboardLength.value);
-    let fbWidth = parseFloat(fingerboardWidth.value);
-    let sbLength = parseFloat(skateboardLength.value);
-
-    // Pull the scale factor value from G10 in Google Sheets (already calculated in your sheet)
-    let scaleFactor = getGoogleSheetData('G10'); // Use your method to fetch G10 value
-
-    return scaleFactor;
-}
-
 // Function to calculate skateboard width
 function calculateSkateboardWidth() {
     let fbLength = parseFloat(fingerboardLength.value);
     let fbWidth = parseFloat(fingerboardWidth.value);
     let sbLength = parseFloat(skateboardLength.value);
 
-    // Perform calculations using the existing formulas in your sheet
-
-    let skateboardWidth = (fbWidth * sbLength) / fbLength; // Example calculation
+    // Perform calculations based on input values (e.g., adjust for the proportion)
+    let skateboardWidth = (fbWidth * sbLength) / fbLength; // Example formula
 
     return skateboardWidth;
 }
 
-// Function to get data from Google Sheets (use your actual method to fetch data)
+// Function to get data from Google Sheets (fetch G10 value for scale factor)
 function getGoogleSheetData(cell) {
-    // This is a placeholder. Replace with your actual method to pull the data.
-    return 7.5; // Example scale factor
+    // Use your actual method to fetch the value from Google Sheets.
+    // Here's a placeholder example where we return a constant value (this would be replaced with actual API fetch).
+    return 7.5; // Example scale factor (value pulled from G10 in your Google Sheets)
 }
 
 // Function to reset the app
