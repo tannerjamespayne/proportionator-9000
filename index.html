@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PROPORTIONATOR 9000</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <h1>PROPORTIONATOR 9000</h1>
+    <form id="proportion-form">
+      <label for="fingerLength">Fingerboard Length (mm)</label>
+      <input type="number" id="fingerLength" name="fingerLength" required />
+      
+      <label for="fingerWidth">Fingerboard Width (mm)</label>
+      <input type="number" id="fingerWidth" name="fingerWidth" required />
+
+      <label for="skateLength">Skateboard Length (in)</label>
+      <input type="number" id="skateLength" name="skateLength" value="32" required />
+
+      <button id="proportionBtn" type="submit">
+        <span class="btn-label">PROPORTIONATE</span>
+        <div class="loading-bar"></div>
+      </button>
+    </form>
+
+    <div id="output" class="receipt hidden">
+      <p><strong>Scale Factor:</strong> <span id="scaleFactor"></span></p>
+      <p><strong>Skateboard Width (in):</strong> <span id="skateWidth"></span></p>
+    </div>
+
+    <button id="resetBtn" class="hidden">RESET</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

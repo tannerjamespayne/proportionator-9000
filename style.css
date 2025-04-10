@@ -1,0 +1,71 @@
+body {
+  font-family: monospace;
+  background: #fff;
+  padding: 2em;
+  color: #333;
+}
+.app {
+  max-width: 600px;
+  margin: auto;
+}
+h1 {
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+label {
+  font-weight: bold;
+}
+input {
+  padding: 0.5em;
+  font-family: monospace;
+}
+button {
+  position: relative;
+  background-color: #d2042d;
+  color: white;
+  font-family: monospace;
+  padding: 0.75em;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  overflow: hidden;
+}
+.loading-bar {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #fcd116;
+  transition: width 3s linear;
+  z-index: 0;
+}
+.btn-label {
+  position: relative;
+  z-index: 1;
+}
+#output, #resetBtn {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+  margin-top: 2em;
+}
+#output.visible, #resetBtn.visible {
+  opacity: 1;
+}
+.receipt {
+  background: #eee;
+  padding: 1em;
+  border: 1px dashed #999;
+  font-family: monospace;
+}
+#resetBtn {
+  background-color: #d2042d;
+  color: white;
+  font-family: monospace;
+  padding: 0.75em;
+  border: none;
+  cursor: pointer;
+}
