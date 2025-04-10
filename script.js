@@ -1,23 +1,40 @@
-function calculate() {
-  let skateboardLength = parseFloat(document.getElementById('skateboardLength').value);
-  let fingerboardLength = parseFloat(document.getElementById('fingerboardLength').value);
-  let fingerboardWidth = parseFloat(document.getElementById('fingerboardWidth').value);
+const skateLengthInput = document.getElementById("skateLength");
+const fbLengthInput = document.getElementById("fbLength");
+const fbWidthInput = document.getElementById("fbWidth");
 
-  let scaleFactor = ((skateboardLength * 25.4) / fingerboardLength).toFixed(3);
-  let skateboardWidth = (fingerboardWidth * (skateboardLength / fingerboardLength)).toFixed(2);
+const proportionateBtn = document.getElementById("proportionateBtn");
+const resetBtn = document.getElementById("resetBtn");
 
-  document.getElementById('scaleFactorOutput').textContent = `Scale Factor: ${scaleFactor} x`;
-  document.getElementById('skateboardWidthOutput').textContent = `Skateboard Width: ${skateboardWidth} in`;
+const outputSection = document.getElementById("outputSection");
+const scaleFactorOutput = document.getElementById("scaleFactor");
+const skateWidthOutput = document.getElementById("skateWidth");
 
-  document.getElementById('outputContainer').style.display = 'block';
-  document.getElementById('resetButton').style.display = 'inline-block';
-}
+proportionateBtn.addEventListener("click", () => {
+  const skateLength = parseFloat(skateLengthInput.value);
+  const fbLength = parseFloat(fbLengthInput.value);
+  const fbWidth = parseFloat(fbWidthInput.value);
 
-function resetApp() {
-  document.getElementById('fingerboardLength').value = '';
-  document.getElementById('fingerboardWidth').value = '';
-  document.getElementById('scaleFactorOutput').textContent = '';
-  document.getElementById('skateboardWidthOutput').textContent = '';
-  document.getElementById('outputContainer').style.display = 'none';
-  document.getElementById('resetButton').style.display = 'none';
-}
+  if (isNaN(skateLength) || isNaN(fbLength) || isNaN(fbWidth) || fbLength === 0) {
+    alert("Please enter valid numbers.");
+    return;
+  }
+
+  const scaleFactor = (skateLength * 25.4) / fbLength;
+  const skateWidth = fbWidth * scaleFactor;
+
+  scaleFactorOutput.textContent = scaleFactor.toFixed(3) + " ";
+  skateWidthOutput.textContent = skateWidth.toFixed(2);
+
+  outputSection.style.display = "block";
+
+  setTimeout(() => {
+    resetBtn.style.display = "block";
+  }, 4000);
+});
+
+resetBtn.addEventListener("click", () => {
+  fbLengthInput.value = "";
+  fbWidthInput.value = "";
+  outputSection.style.display = "none";
+  resetBtn.style.display = "none";
+});
