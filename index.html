@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fingerboard Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Proportionator Web App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="input-container">
+    <div class="container">
+        <!-- Input Fields -->
         <label for="skateboard-length">Skateboard Length (in)</label>
         <input type="number" id="skateboard-length" value="32" step="0.01">
-        
+
         <label for="fingerboard-length">Fingerboard Length (mm)</label>
         <input type="number" id="fingerboard-length" step="0.01">
-        
+
         <label for="fingerboard-width">Fingerboard Width (mm)</label>
         <input type="number" id="fingerboard-width" step="0.01">
-    </div>
 
-    <div id="proportionate-btn" class="proportionate-button" onclick="startLoading()">
-        PROPORTIONATE
+        <!-- Proportionate Button -->
+        <button id="proportionate-btn" onclick="startLoading()">PROPORTIONATE</button>
         <div id="loading-bar"></div>
-    </div>
 
-    <div id="output-container">
-        <p id="scaleFactorOutput">Scale Factor: --x</p>
-        <p id="skateboardWidthOutput">Skateboard Width (in): --</p>
-    </div>
+        <!-- Outputs -->
+        <div id="output-container">
+            <p id="scaleFactorOutput"></p>
+            <p id="skateboardWidthOutput"></p>
+        </div>
 
-    <button id="reset-button" onclick="resetApp()">RESET</button>
+        <!-- Reset Button -->
+        <button id="reset-button" onclick="resetApp()">RESET</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
