@@ -1,40 +1,33 @@
-const skateLengthInput = document.getElementById("skateLength");
-const fbLengthInput = document.getElementById("fbLength");
-const fbWidthInput = document.getElementById("fbWidth");
+document.getElementById("proportionForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-const proportionateBtn = document.getElementById("proportionateBtn");
-const resetBtn = document.getElementById("resetBtn");
+  const skateLength = parseFloat(document.getElementById("skateLength").value);
+  const fbLength = parseFloat(document.getElementById("fbLength").value);
+  const fbWidth = parseFloat(document.getElementById("fbWidth").value);
 
-const outputSection = document.getElementById("outputSection");
-const scaleFactorOutput = document.getElementById("scaleFactor");
-const skateWidthOutput = document.getElementById("skateWidth");
+  if (!fbLength || !fbWidth || !skateLength) return;
 
-proportionateBtn.addEventListener("click", () => {
-  const skateLength = parseFloat(skateLengthInput.value);
-  const fbLength = parseFloat(fbLengthInput.value);
-  const fbWidth = parseFloat(fbWidthInput.value);
+  // Calculate scale factor
+  const scaleFactor = ((skateLength * 25.4) / fbLength).toFixed(3);
 
-  if (isNaN(skateLength) || isNaN(fbLength) || isNaN(fbWidth) || fbLength === 0) {
-    alert("Please enter valid numbers.");
-    return;
-  }
+  // Calculate skateboard width in inches
+  const skateWidth = ((fbWidth * scaleFactor) / 25.4).toFixed(2);
 
-  const scaleFactor = (skateLength * 25.4) / fbLength;
-  const skateWidth = fbWidth * scaleFactor;
+  document.getElementById("scaleFactor").textContent = `${scaleFactor} x`;
+  document.getElementById("skateWidth").textContent = `${skateWidth}`;
 
-  scaleFactorOutput.textContent = scaleFactor.toFixed(3) + " ";
-  skateWidthOutput.textContent = skateWidth.toFixed(2);
-
-  outputSection.style.display = "block";
+  document.getElementById("output").classList.remove("hidden");
 
   setTimeout(() => {
-    resetBtn.style.display = "block";
+    document.getElementById("resetBtn").classList.remove("hidden");
   }, 4000);
 });
 
-resetBtn.addEventListener("click", () => {
-  fbLengthInput.value = "";
-  fbWidthInput.value = "";
-  outputSection.style.display = "none";
-  resetBtn.style.display = "none";
+document.getElementById("resetBtn").addEventListener("click", function () {
+  document.getElementById("fbLength").value = "";
+  document.getElementById("fbWidth").value = "";
+  document.getElementById("scaleFactor").textContent = "";
+  document.getElementById("skateWidth").textContent = "";
+  document.getElementById("output").classList.add("hidden");
+  document.getElementById("resetBtn").classList.add("hidden");
 });
