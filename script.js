@@ -5,29 +5,26 @@ document.getElementById("proportionForm").addEventListener("submit", function (e
   const fbLength = parseFloat(document.getElementById("fbLength").value);
   const fbWidth = parseFloat(document.getElementById("fbWidth").value);
 
-  if (!fbLength || !fbWidth || !skateLength) return;
+  if (isNaN(skateLength) || isNaN(fbLength) || isNaN(fbWidth) || fbLength === 0) return;
 
-  // Calculate scale factor
+  // Correct calculation: scale factor = (skateLength * 25.4) / fbLength
   const scaleFactor = ((skateLength * 25.4) / fbLength).toFixed(3);
-
-  // Calculate skateboard width in inches
   const skateWidth = ((fbWidth * scaleFactor) / 25.4).toFixed(2);
 
-  document.getElementById("scaleFactor").textContent = `${scaleFactor} x`;
-  document.getElementById("skateWidth").textContent = `${skateWidth}`;
+  document.getElementById("scaleFactor").textContent = `Scale Factor: ${scaleFactor} x`;
+  document.getElementById("skateWidth").textContent = `Skateboard Width: ${skateWidth} in`;
 
-  document.getElementById("output").classList.remove("hidden");
-
-  setTimeout(() => {
-    document.getElementById("resetBtn").classList.remove("hidden");
-  }, 4000);
+  document.getElementById("outputSection").style.display = "block";
+  document.getElementById("resetBtn").style.display = "block";
 });
 
 document.getElementById("resetBtn").addEventListener("click", function () {
+  const skateLength = document.getElementById("skateLength").value;
+
   document.getElementById("fbLength").value = "";
   document.getElementById("fbWidth").value = "";
-  document.getElementById("scaleFactor").textContent = "";
-  document.getElementById("skateWidth").textContent = "";
-  document.getElementById("output").classList.add("hidden");
-  document.getElementById("resetBtn").classList.add("hidden");
+  document.getElementById("outputSection").style.display = "none";
+  document.getElementById("resetBtn").style.display = "none";
+
+  document.getElementById("skateLength").value = skateLength; // Preserve user input
 });
