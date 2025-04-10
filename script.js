@@ -1,4 +1,3 @@
-let loadingBar = document.getElementById('loading-bar');
 let proportionateBtn = document.getElementById('proportionate-btn');
 let resetBtn = document.getElementById('reset-button');
 let outputContainer = document.getElementById('output-container');
@@ -9,35 +8,23 @@ let skateboardLength = document.getElementById('skateboard-length');
 let fingerboardLength = document.getElementById('fingerboard-length');
 let fingerboardWidth = document.getElementById('fingerboard-width');
 
-// Function to start the loading process
-function startLoading() {
-    // Make the loading bar visible and start it
-    loadingBar.style.width = '0%';
-    loadingBar.style.transition = 'width 2s ease-in-out'; // Smooth transition for 2 seconds
-    loadingBar.style.width = '100%';
+// Function to start the calculation
+function startCalculation() {
+    // Display the output container
+    outputContainer.style.display = 'block';
 
-    // After 2 seconds, show the outputs
+    // Calculate the scale factor and skateboard width
+    let scaleFactor = calculateScaleFactor();
+    let skateboardWidth = calculateSkateboardWidth();
+
+    // Update the outputs
+    scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor} x`;
+    skateboardWidthOutput.innerText = `Skateboard Width: ${skateboardWidth.toFixed(2)} in`;
+
+    // Show the reset button after 4 seconds
     setTimeout(() => {
-        outputContainer.style.display = 'block';
-
-        // Calculate scale factor
-        let scaleFactor = calculateScaleFactor();
-
-        // Fetch skateboard width based on inputs
-        let skateboardWidth = calculateSkateboardWidth();
-
-        // Update outputs with fetched data
-        scaleFactorOutput.innerText = `Scale Factor: ${scaleFactor} x`;
-        skateboardWidthOutput.innerText = `Skateboard Width: ${skateboardWidth.toFixed(2)} in`;
-
-        // Show the reset button after 4 seconds
-        setTimeout(() => {
-            resetBtn.style.display = 'block';
-        }, 4000);
-    }, 2000);
-
-    // Change button color to yellow after loading bar finishes
-    proportionateBtn.style.backgroundColor = '#e12f2f'; // Cherry Red
+        resetBtn.style.display = 'block';
+    }, 4000);
 }
 
 // Function to calculate skateboard width
@@ -72,10 +59,4 @@ function resetApp() {
 
     outputContainer.style.display = 'none';
     resetBtn.style.display = 'none';
-
-    // Reset the proportionate button to red
-    proportionateBtn.style.backgroundColor = '#e12f2f'; // Cherry Red
-
-    // Reset loading bar
-    loadingBar.style.width = '0%';
 }
